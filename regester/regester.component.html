@@ -1,0 +1,70 @@
+<div class="conatiner">
+    
+    <div class="card  mx-auto mt-5 shadow bg-white rounded">
+        <h1 class="text-secondary" style="text-align: center;">Regestration</h1>
+
+        <form [formGroup]="myRegestraionForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Name</label>
+              <br>
+              <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Name" name="name" formControlName="name">
+            </div>
+            <br>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Mobile No.</label>
+              <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Enter Mobile NO." name="mobile" formControlName="mobile">
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Eamil</label>
+                <input type="email" class="form-control" id="exampleInputPassword1" placeholder="Enter Email" name="email" formControlName="email">
+              </div>
+              <br>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="Password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password" name="password" formControlName="password">
+              </div>
+              <br>
+              <div class="btn d-flex justify-content-center">
+            <button type="submit" class="btn btn-outline-success btn-lg" >Submit</button>
+        </div>
+            <br>
+          </form>
+    </div>
+
+    <div class="card mx-auto mt-5 shadow bg-white rounded">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Mobile No.</th>
+          <th scope="col">Email</th>
+          <th scope="col">Password</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users; index as i">
+          <th scope="row">{{i + 1}}</th>
+          <td>{{user.name}}</td>
+          <td>{{user.mobile}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.password}}</td>
+          <!-- <td><button class="btn btn-warning" (click)="delete(i)">Delete</button></td> -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
