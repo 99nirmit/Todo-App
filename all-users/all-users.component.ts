@@ -17,4 +17,9 @@ export class AllUsersComponent {
     const tempUser = JSON.parse(localStorage.getItem('users') || '[]');
     this.users = tempUser;
   }
+
+  delete(index:number){
+    this.users.splice(index,1);
+    localStorage.setItem('users',JSON.stringify(this.users))
+  }
 }

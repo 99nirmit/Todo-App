@@ -7,6 +7,5 @@ import { User } from '../regester/regester.component';
 export class DataService {
 
   users:User[] = [];
-
   constructor() { }
 }

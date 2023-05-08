@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { DataService } from '../appService/data.service';
 
@@ -18,7 +18,9 @@ export class RegesterComponent {
 
   constructor(private dataServive:DataService){}
 
-  users:User[] = []
+  users:User[] = [];
+
+
 
   myRegestraionForm !: FormGroup;
 
@@ -32,23 +34,20 @@ export class RegesterComponent {
 
     const users = JSON.parse(localStorage.getItem('users') || '[]');
     this.users = users;
+
+    const selectedUser = this.dataServive
   }
 
   onSubmit(){
     const selectedUser = this.myRegestraionForm.value;
-    const users = JSON.parse(localStorage.getItem('usres') || '[]');
-    users.push(selectedUser);
-    localStorage.setItem('users', JSON.stringify(users));
-    console.log(users);
+    const tempusers = JSON.parse(localStorage.getItem('users') || '[]');
+    console.log(tempusers);
     
-    // this.dataServive.users.push(selectedUser);
-    // this.myRegestraionForm.reset();
+    tempusers.push(selectedUser);
+    localStorage.setItem('users', JSON.stringify(tempusers));
+    console.log(tempusers + "Final");
+    this.myRegestraionForm.reset();
+    console.log(this.users);
   }
-
-  // delete(index:number){
-  //   this.dataServive.users.splice(index,1)
-  // }
-
-
 }
 
