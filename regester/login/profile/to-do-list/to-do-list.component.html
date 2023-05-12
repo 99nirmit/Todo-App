@@ -1,0 +1,62 @@
+
+<div class="conatiner">
+    
+    <div class="card  mx-auto mt-5 shadow bg-white rounded">
+        <h1 class="text-secondary" style="text-align: center;">All Lists</h1>
+
+<form [formGroup]="myListForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="exampleInputPassword1"></label>
+        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter Do List" name="listName" formControlName="listName">
+    </div>
+    <br>
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1">Description</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description" formControlName="description"></textarea>
+      </div>
+<br>
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">Start Date</label>
+        <input type="date" class="form-control" id="exampleInputStartDate"  name="startDate" formControlName="startDate">
+      </div>
+<br>
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">End Date</label>
+        <input type="date" class="form-control" id="exampleInputEndDate"  name="endDate" formControlName="endDate">
+      </div>
+      <br>
+    <button type="submit" class="btn btn-outline-success btn-lg">{{isUpdate ? 'Update' : 'Submit'}}</button>
+    
+</form>
+</div>
+</div>
+
+<div class="card  mx-auto mt-5 shadow bg-white rounded tableData">
+    <h1 class="text-secondary" style="text-align: center;">All Lists</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Sr.No.</th>
+            <th scope="col">List</th>
+            <th scope="col">Description</th>
+            <th scope="col">Starting Date</th>
+            <th scope="col">Ending Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let list of lists; index as i">
+            <th scope="row">{{i+1}}</th>
+            <td>{{list.listName}}</td>
+            <td>{{list.description}}</td>
+            <td>{{list.startDate | date:'dd-MM-yyyy'}}</td>
+            <td>{{list.endDate | date:'dd-MM-yyyy'}}</td>
+            <i class="fas fa-edit" (click)="onEdit(i,i)" ></i>
+            <td><i class="fas fa-trash" (click)="onDelete(i)"></i></td>
+            <!-- <td><i class="fas fa-user-edit" (click)="onUpdate(i)"></i></td> -->
+            
+        </tr>
+        <tr>
+        </tr>
+    </tbody>
+</table>
+
