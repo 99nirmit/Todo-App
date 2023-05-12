@@ -7,6 +7,10 @@ import { HomeComponent } from './home/home.component';
 import { RegesterComponent } from './regester/regester.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { AllUsersComponent } from './all-users/all-users.component';
+import { LoginComponent } from './regester/login/login.component';
+import { ProfileComponent } from './regester/login/profile/profile.component';
+import { ToDoListComponent } from './regester/login/profile/to-do-list/to-do-list.component';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -14,7 +18,11 @@ import { AllUsersComponent } from './all-users/all-users.component';
     AppComponent,
     HomeComponent,
     RegesterComponent,
-    AllUsersComponent
+    AllUsersComponent,
+    LoginComponent,
+    ProfileComponent,
+    ToDoListComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -22,7 +30,7 @@ import { AllUsersComponent } from './all-users/all-users.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

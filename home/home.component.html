@@ -1,52 +1,50 @@
-<div class="conatiner">
+<div class="conatiner-fluid">
   <div class="row justify-content-center">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <!-- Container wrapper -->
-      <div class="container-fluid">
         <!-- Toggle button -->
         <button
-          class="navbar-toggler"
-          type="button"
-          data-mdb-toggle="collapse"
-          data-mdb-target="#navbarCenteredExample"
-          aria-controls="navbarCenteredExample"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
+          class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCenteredExample" aria-controls="navbarCenteredExample" aria-expanded="false" aria-label="Toggle navigation">
           <i class="fas fa-bars"></i>
         </button>
 
         <!-- Collapsible wrapper -->
         <div
-          class="collapse navbar-collapse justify-content-center"
-          id="navbarCenteredExample"
-        >
+          class="collapse navbar-collapse justify-content-center" id="navbarCenteredExample">
           <!-- Left links -->
           <ul class="navbar-nav mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" aria-current="page"  href="/home">Home</a>
+              <a class="nav-link" aria-current="page"  routerLink="/home">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/regester">Regester</a>
+              <a class="nav-link" routerLink="/regester">Regester</a>
             </li>
             
             <li class="nav-item">
-              <a class="nav-link" href="#" >Login</a>
+              <a class="nav-link" routerLink="/login" >Login</a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="/allUsers">All Users</a>
+              <a class="nav-link" routerLink="/allUsers">All Users</a>
+            </li>
+
+            <li class="nav-item" >
+              <a class="nav-link" *ngIf="isAuthenticated" routerLink="/profile">My Profile</a>
             </li>
           </ul>
         </div>
-      </div>
+      
     </nav>
+  </div>
+  <div class="row justify-content-center mt-5">
+    <div class="col-lg-10 col-md-12 col-sm-14">
+    <div class="card w-2 mx-auto mt-5 shadow bg-white rounded">
+      <div class="card-body">
+        <h5 class="card-tittle display-3 text-center">Welcome To To-Do List APP</h5>
+
+      </div>
+</div>
+</div>
   </div>
 </div>
 
 
-<div class="container">
-    <div class="card w-2 mx-auto mt-5 shadow bg-white rounded">
-        <h5 class="display-3">Welcome To To-Do List APP</h5>
-      </div>
-</div>

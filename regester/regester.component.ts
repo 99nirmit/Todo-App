@@ -35,8 +35,8 @@ export class RegesterComponent {
     const users = JSON.parse(localStorage.getItem('users') || '[]');
     this.users = users;
 
-    const selectedUser = this.dataServive
-  }
+    }
+  
 
   onSubmit(){
     const selectedUser = this.myRegestraionForm.value;
@@ -47,6 +47,7 @@ export class RegesterComponent {
     localStorage.setItem('users', JSON.stringify(tempusers));
     console.log(tempusers + "Final");
     this.myRegestraionForm.reset();
+    
     console.log(this.users);
   }
 }

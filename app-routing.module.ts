@@ -3,6 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { RegesterComponent } from './regester/regester.component';
 import { AllUsersComponent } from './all-users/all-users.component';
+import { LoginComponent } from './regester/login/login.component';
+import { ProfileComponent } from './regester/login/profile/profile.component';
+import { ToDoListComponent } from './regester/login/profile/to-do-list/to-do-list.component';
 
 const routes: Routes = [
   
@@ -19,7 +22,17 @@ const routes: Routes = [
   },
   {
     path:'allUsers', component:AllUsersComponent
+  },
+  {
+    path:'login', component:LoginComponent
+  },
+  {
+    path:'profile', component:ProfileComponent
+  },
+  {
+    path:'toDo', component:ToDoListComponent
   }
+  
 ];
 
 @NgModule({

@@ -70,9 +70,6 @@
 
         if(matchUser){
           console.log(JSON.stringify (matchUser) + " Succesfully getting the match user data");
-
-          
-
           this.selectedUser =  matchUser;
           this.profileForm.patchValue(this.selectedUser);
         }else{
@@ -111,4 +108,4 @@
     }
     
       }
-      
+    
