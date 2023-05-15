@@ -30,28 +30,25 @@ export class LoginComponent {
   constructor(private dataService : DataService,private router : Router){}
 
   onlogin(){
-
-    const email = this.loginForm.get('email')?.value;
-    const password = this.loginForm.get('password')?.value;
-
     const tempUser = JSON.parse(localStorage.getItem('users') || '[]');
+    console.log(tempUser);
+    const selectedUser = this.loginForm.value;
+    console.log(selectedUser);
+
     const matchingUser = tempUser.find(
-      (findUser:any) => findUser.email ===  email && findUser.password === password);
-      if(matchingUser){
-        const reset = this.loginForm.reset();
-        console.log(reset + "resetting");
-        
-        this.dataService.setIsAuthenticated(true);
-        this.dataService.setCurreentUser(matchingUser)
-        this.router.navigateByUrl('/profile');
-        this.dataService.currentUserSubject.subscribe(user => {
-          console.log(JSON.stringify(user) + " current user");
-        })
-        
-      }else{
-        alert("Login Detanied");
-        this.loginForm.reset();
-      }
+      (findUser:any) => findUser.email === selectedUser.email && findUser.password === findUser.password
+    );
+    if(matchingUser){
+      console.log("match");
+      this.dataService.setIsLogin(true);
+          this.dataService.setCurreentUser(matchingUser)
+          this.router.navigateByUrl('/profile');
+          this.loginForm.reset();
+    }else{
+      alert("Login Detanied");
+      console.log("Not match");      
+    }
+       }
   }
 
-}
+

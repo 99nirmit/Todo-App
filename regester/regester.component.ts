@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { DataService } from '../appService/data.service';
+import { Router } from '@angular/router';
 
 export interface User{
   name: string,
@@ -16,11 +17,9 @@ export interface User{
 })
 export class RegesterComponent {
 
-  constructor(private dataServive:DataService){}
+  constructor(private dataServive:DataService,private route:Router){}
 
   users:User[] = [];
-
-
 
   myRegestraionForm !: FormGroup;
 
@@ -40,15 +39,11 @@ export class RegesterComponent {
 
   onSubmit(){
     const selectedUser = this.myRegestraionForm.value;
-    const tempusers = JSON.parse(localStorage.getItem('users') || '[]');
-    console.log(tempusers);
-    
+    const tempusers = JSON.parse(localStorage.getItem('users') || '[]');  
     tempusers.push(selectedUser);
     localStorage.setItem('users', JSON.stringify(tempusers));
-    console.log(tempusers + "Final");
     this.myRegestraionForm.reset();
-    
-    console.log(this.users);
+    // this.route.navigateByUrl('/login')
   }
 }
 

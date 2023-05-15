@@ -12,19 +12,15 @@ export class DataService {
   lists:Lists[] = [];
   constructor() { }
 
-  public isAuthenticatdSubject = new BehaviorSubject<boolean>(false);
-
-  public setIsAuthenticated(isAuthenticated:boolean):void{
-    this.isAuthenticatdSubject.next(isAuthenticated);
+  public loginSubject = new BehaviorSubject<boolean>(false);
+  public setIsLogin(IsLogin:boolean):void{
+    this.loginSubject.next(IsLogin);
   }
-
   public currentUserSubject = new BehaviorSubject<any>(null);
-
   setCurreentUser(currentUser:any){
     this.currentUserSubject.next(currentUser);
     return currentUser;
   }
-
   getCurrentUser(): Observable <any>{
     return this.currentUserSubject.asObservable();
   }

@@ -9,13 +9,13 @@ import { DataService } from '../appService/data.service';
 export class HomeComponent {
   public isAuthenticated:boolean | undefined;
 
-  constructor(private dataService:DataService){
-    this.dataService.isAuthenticatdSubject.subscribe(
-      (isAuthenticated:boolean) =>{
-        this.isAuthenticated = isAuthenticated;
-      }
-    )
-  }
+  constructor(private dataService:DataService){}
+    // this.dataService.isAuthenticatdSubject.subscribe(
+    //   (isAuthenticated:boolean) =>{
+    //     this.isAuthenticated = isAuthenticated;
+    //   }
+    // )
+  
 
   
 

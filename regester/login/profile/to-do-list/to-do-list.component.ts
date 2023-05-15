@@ -31,11 +31,11 @@ lists:Lists[]=[];
 
   ngOnInit(){
     this.myListForm = new FormGroup({
-      'id' : new FormControl(null),
-      'listName' : new FormControl(null),
-      'description' : new FormControl(null),
-      'startDate' : new FormControl(null),
-      'endDate' : new FormControl(null)
+      id : new FormControl(null),
+      listName : new FormControl(null),
+      description : new FormControl(null),
+      startDate : new FormControl(null),
+      endDate : new FormControl(null)
     })
   
   
@@ -57,15 +57,8 @@ lists:Lists[]=[];
       selectedList.id = this.lists.length;
       this.lists.push(selectedList)
       localStorage.setItem('lists', JSON.stringify(this.lists));
-      
-  
-      // tempList.push(selectedList);
-      // localStorage.setItem('lists',JSON.stringify(tempList));
-      // console.log(JSON.stringify(tempList) + " Final");    
-      // console.log(this.lists);
+      this.myListForm.reset();
     }
-   
-    
   }
 
   onDelete(index:number){
@@ -73,44 +66,19 @@ lists:Lists[]=[];
     localStorage.setItem('lists',JSON.stringify(this.lists))
   }
 
-  // onEdit(id:number){
-  //   const tempList = JSON.parse(localStorage.getItem('lists') || '[]');
-  //   console.log(tempList);
-    
-  //   const selectedIndex = tempList.findIndex((item:Lists) => item.id === id);
-  //   console.log(selectedIndex);
-    
-
-  //   if(selectedIndex >= 0){
-  //     console.log(JSON.stringify (tempList[selectedIndex]));
-  //     this.myListForm.patchValue(tempList[selectedIndex])
-      
-  //   }
-  // }
-
+  currentIndex : any;
   onEdit(id:number,index:number){
     this.isUpdate = true;
     this.selectedIndex = index;
-    const tempList = JSON.parse(localStorage.getItem('lists') || '[]');
-    
-    const selectedList = tempList.find((item:Lists) =>  item.id === this.lists[index].id);
 
-    if(selectedList){
-      console.log("matched");
-      
-      console.log(JSON.stringify(selectedList));
-      this.myListForm.patchValue(selectedList);
-    }
+    const tempList = this.lists[index];
+    this.myListForm.patchValue(tempList)
 }
 
 onUpdate(index:number){
   const updatedList = this.myListForm.value;
   this.lists[index] = updatedList;
   localStorage.setItem('lists', JSON.stringify(this.lists));
-  // const tempList = JSON.parse(localStorage.getItem('lists') || '[]');
-  // tempList[this.selectedIndex] = updatedList;
-  // localStorage.setItem('lists', JSON.stringify(tempList));
-  // this.lists = tempList;
   this.isUpdate = false;
   this.myListForm.reset();
 }

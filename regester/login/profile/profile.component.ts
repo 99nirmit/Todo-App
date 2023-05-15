@@ -10,102 +10,46 @@
     styleUrls: ['./profile.component.scss']
   })
   export class ProfileComponent {
- 
-  
+
   currentUser:any;
-  selectedUser:any;
+  selectedUsers:any;
   showEditForm = false;
-
+  currentIndex : any;
   profileForm !: FormGroup;
-
     constructor(private dataService:DataService,private route:ActivatedRoute){}
 
     ngOnInit(){
     this.profileForm = new FormGroup({
-      'name' : new FormControl(null),
-      'email' : new FormControl(null),
-      'mobile' : new FormControl(null),
-      'password' : new FormControl(null)
+      name : new FormControl(null),
+      email : new FormControl(null),
+      mobile : new FormControl(null),
+      password : new FormControl(null)
     }) 
     }
+    
+      showUser(){
+        this.dataService.getCurrentUser().subscribe(user => {
+          console.log(user);
+          this.selectedUsers = [user];
+        })
+        console.log(this.selectedUsers);
+      }
 
-
-    showUser(){
-      this.dataService.getCurrentUser().subscribe(user => {
-        console.log(user);
-        const tempUser = JSON.parse(localStorage.getItem('users') || '[]');
-        const matchUser = tempUser.find(
-          (findUser:any) => 
-              findUser.email === user.email && findUser.password === user.password
-        );
-
-        if(matchUser){
-          console.log(JSON.stringify (matchUser) + " Succesfully getting the match user data");
-
-          
-
-          this.selectedUser =  matchUser;
-          // this.profileForm.patchValue(this.selectedUser);
-        }else{
-          console.log("Not Found");
-          
-        }
-
-          }
-        )
-        
-      
-    }
-
-
-    onEdit(){
+    onEdit(index:number){
+      console.log(this.selectedUsers);
       this.showEditForm = true;
-      this.dataService.getCurrentUser().subscribe(user => {
-        console.log(user);
-        const tempUser = JSON.parse(localStorage.getItem('users') || '[]');
-        const matchUser = tempUser.find(
-          (findUser:any) => 
-              findUser.email === user.email && findUser.password === user.password
-        );
-
-        if(matchUser){
-          console.log(JSON.stringify (matchUser) + " Succesfully getting the match user data");
-          this.selectedUser =  matchUser;
-          this.profileForm.patchValue(this.selectedUser);
-        }else{
-          console.log("Not Found");
-          
-        }
-
-          }
-        )
+      this.currentIndex = index;
+      const editUser = this.selectedUsers[index];
+      this.profileForm.patchValue(editUser);
     }
 
-    // onUpdate(){
-    //   const selectedUser = this.profileForm.value;
-    //   const tempusers = JSON.parse(localStorage.getItem('users') || '[]');
-    //   console.log(tempusers);
-      
-    //   tempusers.push(selectedUser);
-    //   localStorage.setItem('users', JSON.stringify(tempusers));
-    //   console.log(tempusers + "Final");
-    //   // this.myRegestraionForm.reset();
-     
-    //   console.log(this.dataService.users);
-    // }
     onUpdate() {
-      const updatedUser = this.profileForm.value;
-      const tempUsers = JSON.parse(localStorage.getItem('users') || '[]');
-      const updatedUsers = tempUsers.map((user: any) => {
-        if (user.email === this.selectedUser.email) {
-          return { ...user, ...updatedUser };
-        }
-        return user;
-      });
-      localStorage.setItem('users', JSON.stringify(updatedUsers));
-      console.log(updatedUsers + "Final");
+      const updateUser = this.profileForm.value;
+      this.selectedUsers[this.currentIndex] = updateUser;
+      console.log(this.selectedUsers);
+      localStorage.setItem('users', JSON.stringify(this.selectedUsers));
+      console.log(this.selectedUsers + "Final");
       this.profileForm.reset();
     }
-    
       }
     
